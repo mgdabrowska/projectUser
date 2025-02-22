@@ -1,0 +1,26 @@
+package com.testowy.projectUser.todo;
+
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class TodoService {
+
+    private static List<Todo> todos = new ArrayList<>();
+    static {
+        todos.add(new Todo(1, "Coursera", "Learn Java",
+                LocalDate.now().plusYears(1), false));
+        todos.add(new Todo(2, "Coursera", "Learn AWS",
+                LocalDate.now().plusYears(2), false));
+        todos.add(new Todo(3, "Coursera", "Learn FullStack Development",
+                LocalDate.now().plusYears(3), false));
+
+    }
+
+    public List<Todo> findUsername(String username) {
+        return todos;
+    }
+}
