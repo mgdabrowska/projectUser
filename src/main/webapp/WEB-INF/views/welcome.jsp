@@ -1,15 +1,10 @@
 <html>
 <head> </head>
-<body>Welcome Page
-<form >
-    <div> Welcome in new page</div>
-    <div>Name: ${name}</div>
-    <div>Password: ${password}</div>
-    <div><a href = "listTodos"> Manage </a> your list</div>
-
-</form>
-
-
-</body>
+<body>
+		<div class="container">
+			<h1>Welcome ${name}</h1>
+			<a href="listTodos">Manage</a> your todos
+		</div>
+	</body>
 
 </html>
