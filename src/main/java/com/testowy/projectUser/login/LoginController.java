@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@SessionAttributes("name")
 public class LoginController {
 
     private final AutenticationService autenticationService;
