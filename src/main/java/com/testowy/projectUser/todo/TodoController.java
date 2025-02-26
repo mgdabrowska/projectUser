@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
@@ -35,7 +36,12 @@ public class TodoController {
     }
 
     @PostMapping("/addTodos")
-    public String addNewTodo(){
+    public String addNewTodo(@RequestParam String description, Model model){
+        String username =(String) model.getAttribute("name");
+        todoService.addTodo(username,
+                description,
+                null,
+                false);
         return "redirect: /listTodos";
     }
 }

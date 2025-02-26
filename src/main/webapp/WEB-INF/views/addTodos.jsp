@@ -8,7 +8,7 @@
 		<title>Add Todo Page</title>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" action="/addTodos">
 			<h1>Enter Todo Details</h1>
 			  <form method="post">
 			  Description: <input type="text" name="description"/>
