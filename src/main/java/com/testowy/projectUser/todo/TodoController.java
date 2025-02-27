@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -31,17 +32,20 @@ public class TodoController {
     }
 
     @GetMapping("/addTodos")
-    public String showNewTodosPage(){
+    public String showNewTodosPage(Model model){
+        String username =(String) model.getAttribute("name");
+        Todo todo = new Todo(0,username,"", LocalDate.now().plusYears(1),false);
+        model.addAttribute("todo", todo);
         return "addTodos";
     }
 
     @PostMapping("/addTodos")
-    public String addNewTodo(@RequestParam String description, Model model){
+    public String addNewTodo( Model model, Todo todo){
         String username =(String) model.getAttribute("name");
         todoService.addTodo(username,
-                description,
-                null,
+                todo.getDescription(),
+                LocalDate.now().plusYears(1),
                 false);
-        return "redirect: /listTodos";
+        return "redirect:/listTodos";
     }
 }
