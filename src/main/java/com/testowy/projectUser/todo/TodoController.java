@@ -61,4 +61,11 @@ public class TodoController {
         todoService.removeTodoById(id);
         return "redirect:/listTodos";
     }
+
+    @GetMapping("/update-Todo")
+    public String updateTodo(@RequestParam int id, Model model){
+        Todo todo= todoService.findById(id);
+      model.addAttribute("todo", todo);
+        return "addTodos";
+    }
 }
