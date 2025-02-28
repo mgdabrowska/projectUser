@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
+
 <html>
 	<head>
 		<link href="webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" >
@@ -12,6 +13,8 @@
 			<h1>Enter Todo Details</h1>
 			  <form:form method="post" action="/addTodos"  modelAttribute="todo">
 			  Description: <form:input type="text" path="description" required ="required"/>
+			              <form:errors path="description" cssClass="text-danger"/>
+
 			               <input type="submit" class="btn btn-success"/>
 			               <form:input type="hidden" path="id"/>
 			               <form:input type="hidden" path="done"/>
