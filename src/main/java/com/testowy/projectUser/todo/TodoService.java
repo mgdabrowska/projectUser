@@ -1,5 +1,6 @@
 package com.testowy.projectUser.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -30,7 +31,9 @@ public class TodoService {
 
     public void removeTodoById(int id){
         Predicate<? super Todo> predicate = todo -> todo.getId() == id;
+        System.out.println(todos);
         todos.removeIf(predicate);
+        System.out.println(todos);
     }
     public List<Todo> findUsername(String username) {
 
@@ -40,5 +43,11 @@ public class TodoService {
         Predicate<? super Todo> predicate = todo -> todo.getId() == id;
         Todo todo = todos.stream().filter(predicate).findFirst().get();
         return todo;
+    }
+
+    public void updateTodo(@Valid Todo todo) {
+        removeTodoById(todo.getId());
+        todos.add(todo);
+
     }
 }
