@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 @Service
@@ -36,13 +38,15 @@ public class TodoService {
         System.out.println(todos);
     }
     public List<Todo> findUsername(String username) {
+        return todos.stream()
+                .filter(todo -> todo.getUsername() !=null && username.equalsIgnoreCase((todo.getUsername()))).toList();
 
-        return todos;
     }
-    public Todo findById(int id) {
-        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
-        Todo todo = todos.stream().filter(predicate).findFirst().get();
-        return todo;
+    public Optional<Todo> findById(int id) {
+
+        return todos.stream()
+                .filter(todo -> todo.getId() == id).findFirst();
+
     }
 
     public void updateTodo(@Valid Todo todo) {
