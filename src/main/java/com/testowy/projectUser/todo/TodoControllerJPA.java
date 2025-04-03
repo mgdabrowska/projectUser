@@ -14,14 +14,18 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-//@Controller
+@Controller
 @SessionAttributes("name")
-public class TodoController {
+public class TodoControllerJPA {
 
     private TodoService todoService;
+    private TodoRepository todoRepository;
 
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
+
+    public TodoControllerJPA(TodoRepository todoRepository, TodoService todoService) {
+        super();
+        this.todoRepository = todoRepository;
+        this.todoService=todoService;
     }
 
 
@@ -29,7 +33,8 @@ public class TodoController {
     @GetMapping("/listTodos")
     public String listAllTodos(Model model){
         String username = getLoggedInUsername(model);
-        List<Todo> todos = todoService.findUsername(username);
+        List<Todo> todos = todoRepository.findByUsername(username);
+
         model.addAttribute("todos",todos);
         return "listTodos";
     }
